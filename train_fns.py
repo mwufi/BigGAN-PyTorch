@@ -90,7 +90,7 @@ def GAN_training_function(G, D, GD, z_, y_, ema, state_dict, config):
     # Return G's loss and the components of D's loss.
     return out
   return train
-  
+
 ''' This function takes in the model, saves the weights (multiple copies if 
     requested), and prepares sample sheets: one consisting of samples given
     a fixed noise seed (to show how the model evolves throughout training),

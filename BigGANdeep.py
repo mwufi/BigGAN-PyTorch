@@ -496,7 +496,19 @@ class G_D(nn.Module):
     self.D = D
 
   def forward(self, z, gy, x=None, dy=None, train_G=False, return_G_z=False,
-              split_D=False):              
+              split_D=False):
+    """
+    You can call this class three ways:
+
+    G_D(z, gy) - Forward pass with noise and class labels
+
+    - return G_z - returns the generator output G_z
+    - train_G - whether to have gradients in G
+    - split_D - whether to calculate D(fake) and D(real) separately (< efficiency)
+
+    G_D(z, gy, x) - Forward pass with noise and class labels and real data
+
+    """
     # If training G, enable grad tape
     with torch.set_grad_enabled(train_G):
       # Get Generator output given noise

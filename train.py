@@ -220,7 +220,8 @@ def main():
   # parse command line and run
   parser = utils.prepare_parser()
   config = vars(parser.parse_args())
-  print(config)
+  for k,v in config.items():
+    print(k.rjust(21), v)
   run(config)
 
 if __name__ == '__main__':
