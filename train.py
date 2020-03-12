@@ -138,6 +138,7 @@ def run(config):
 
   # Prepare inception metrics: FID and IS
   if config.get('no_inception'):
+    print('Skipping INception....')
     get_inception_metrics = inception_utils.prepare_dummy_inception_metrics()
   else:
     get_inception_metrics = inception_utils.prepare_inception_metrics(config['dataset'],
