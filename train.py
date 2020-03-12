@@ -29,6 +29,10 @@ import losses
 import train_fns
 from sync_batchnorm import patch_replication_callback
 
+# Import wandb
+import wandb
+
+
 # The main training file. Config is a dictionary specifying the configuration
 # of this training run.
 def run(config):

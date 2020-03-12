@@ -52,7 +52,9 @@ def run(config):
   loaders = utils.get_data_loaders(**config)
 
   # Load inception net
+  print('Loading inception net...')
   net = inception_utils.load_inception_net(parallel=config['parallel'])
+  print('INception loaded. Dream sequence initiate')
   pool, logits, labels = [], [], []
   device = 'cuda'
   for i, (x, y) in enumerate(tqdm(loaders[0])):
