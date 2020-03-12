@@ -234,6 +234,10 @@ def prepare_parser():
     '--no_fid', action='store_true', default=False,
     help='Calculate IS only, not FID? (default: %(default)s)')
   parser.add_argument(
+    '--no_inception', action='store_true', default=False,
+    help='If Inception takes a long time, set this to true to disable'
+  )
+  parser.add_argument(
     '--test_every', type=int, default=5000,
     help='Test every X iterations (default: %(default)s)')
   parser.add_argument(
