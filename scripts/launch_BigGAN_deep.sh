@@ -1,5 +1,5 @@
 #!/bin/bash
-python train.py \
+python3 train.py \
 --model BigGANdeep \
 --dataset I128_hdf5 --parallel --shuffle  --num_workers 8 --batch_size 256 \
 --num_G_accumulations 8 --num_D_accumulations 8 \
