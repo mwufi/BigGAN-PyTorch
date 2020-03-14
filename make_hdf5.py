@@ -39,6 +39,10 @@ def prepare_parser():
   parser.add_argument(
     '--compression', action='store_true', default=False,
     help='Use LZF compression? (default: %(default)s)')
+  parser.add_argument(
+    '--half', action='store_true', default=False,
+    help='Only load half the dataset (32GB) (default: %(default)s)'
+  )
   return parser
 
 
@@ -73,8 +77,17 @@ def run(config):
   # auto:(125,1,16,32) / None                         11/s                  61GB        
 
   print('Starting to load %s into an HDF5 file with chunk size %i and compression %s...' % (config['dataset'], config['chunk_size'], config['compression']))
+
+  # Use half the dataset?
+  stop_at = len(train_loader) // 2 if config['half'] else None
+  if stop_at:
+    print('Will stop at', stop_at)
+
   # Loop over train loader
   for i,(x,y) in enumerate(tqdm(train_loader)):
+    if stop_at and i > stop_at:
+      break
+
     # Stick X into the range [0, 255] since it's coming from the train loader
     x = (255 * ((x + 1) / 2.0)).byte().numpy()
     # Numpyify y
