@@ -1,7 +1,7 @@
 #!/bin/bash
 CUDA_VISIBLE_DEVICES=2,3,6,7 python3 train.py \
 --model BigGANdeep \
---G_fp16 --D_fp16 \
+--G_fp16 --D_fp16 --load_in_mem \
 --dataset I128_hdf5 --parallel --shuffle  --num_workers 8 --batch_size 64 \
 --num_G_accumulations 32 --num_D_accumulations 32 \
 --num_D_steps 1 --G_lr 1e-4 --D_lr 4e-4 --D_B2 0.999 --G_B2 0.999 \
