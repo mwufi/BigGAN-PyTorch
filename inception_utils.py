@@ -258,6 +258,7 @@ def accumulate_inception_activations(sample, net, num_inception_images=50000):
 
 # Load and wrap the Inception model
 def load_inception_net(parallel=False):
+  print('Loading Inception...')
   inception_model = inception_v3(pretrained=True, transform_input=False)
   inception_model = WrapInception(inception_model.eval()).cuda()
   if parallel:
@@ -273,10 +274,13 @@ def load_inception_net(parallel=False):
 def prepare_inception_metrics(dataset, parallel, no_fid=False):
   # Load metrics; this is intentionally not in a try-except loop so that
   # the script will crash here if it cannot find the Inception moments.
+  print('Loading inception moments...')
+
   # By default, remove the "hdf5" from dataset
   dataset = dataset.strip('_hdf5')
   data_mu = np.load(dataset + '_inception_moments.npz')['mu']
   data_sigma = np.load(dataset + '_inception_moments.npz')['sigma']
+
   # Load network
   net = load_inception_net(parallel)
 
