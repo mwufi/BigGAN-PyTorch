@@ -54,7 +54,7 @@ def run(config):
   # Load inception net
   print('Loading inception net...')
   net = inception_utils.load_inception_net(parallel=config['parallel'])
-  print('INception loaded. Dream sequence initiate')
+  print('INception loaded. Dream sequence')
   pool, logits, labels = [], [], []
   device = 'cuda'
   for i, (x, y) in enumerate(tqdm(loaders[0])):
